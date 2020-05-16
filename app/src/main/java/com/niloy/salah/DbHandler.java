@@ -158,7 +158,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getData(){
+    public Cursor getSalahData(){
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_SALAH +";", null);
         return cursor;

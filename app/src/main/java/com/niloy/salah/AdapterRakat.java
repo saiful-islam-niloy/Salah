@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,9 +28,29 @@ public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterRakat.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull AdapterRakat.ViewHolder viewHolder, final int i) {
         viewHolder.rakat.setText(rakatList.get(i).getRakat());
         viewHolder.priority.setText(rakatList.get(i).getNiyat_bangla());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                builder.setTitle("Namajer Niyat");
+//                builder.setMessage(rakatList.get(i).getNiyat_bangla());
+//                builder.setMessage(rakatList.get(i).getNiyat_bangla_pornounciation());
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//                alertDialog.setCancelable(true);
+//                alertDialog.show();
+                CreateCustomDialog customDialog = new CreateCustomDialog(context,
+                        rakatList.get(i).getNiyat_arabic(),
+                        rakatList.get(i).getNiyat_bangla_pornounciation(),
+                        rakatList.get(i).getNiyat_bangla());
+                customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                customDialog.show();
+            }
+        });
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.niloy.salah;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,7 +40,7 @@ public class SalahActivity extends AppCompatActivity {
         }
 
         SQLiteDatabase database =  dbHandler.getReadableDatabase();
-        Cursor cursor = dbHandler.getData();
+        Cursor cursor = dbHandler.getSalahData();
         if(cursor.getCount() > 0){
 
             while (cursor.moveToNext()){
