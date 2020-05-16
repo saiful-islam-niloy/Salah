@@ -3,14 +3,25 @@ package com.niloy.salah;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class DbHandler extends SQLiteOpenHelper {
     private Context context;
+    private SQLiteDatabase myDataBase;
+    private SQLiteOpenHelper sqLiteOpenHelper;
 
+    private static String DATABASE_PATH = "";
     private static final String DATABASE_NAME = "Salah.db";
 
     private static final String TABLE_NAME = "Salah";
@@ -27,6 +38,75 @@ public class DbHandler extends SQLiteOpenHelper {
     public DbHandler(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION_NUMBER);
         this.context = context;
+        DATABASE_PATH = this.context.getDatabasePath(DATABASE_NAME).toString();
+    }
+
+    public void createDataBase() throws IOException {
+
+        boolean dbExist = checkDataBase();
+
+        if (dbExist) {
+            // do nothing - database already exist
+        } else {
+            this.getWritableDatabase();
+            try {
+                copyDataBase();
+            }
+            catch (IOException e) {
+                throw new Error("Error copying database");
+            }
+        }
+    }
+
+    private boolean checkDataBase() {
+        SQLiteDatabase checkDB = null;
+        try {
+            String myPath = DATABASE_PATH;
+            checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        } catch (SQLiteException e) {
+            Log.e("message", "" + e);
+        }
+
+        if (checkDB != null) {
+            checkDB.close();
+        }
+        return checkDB != null;
+    }
+
+    private void copyDataBase() throws IOException {
+        InputStream myInput = context.getAssets().open(DATABASE_NAME);
+        String outFileName = DATABASE_PATH;
+        OutputStream myOutput = new FileOutputStream(outFileName);
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer)) > 0) {
+            myOutput.write(buffer, 0, length);
+        }
+
+
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+    }
+
+    public void openDataBase()
+            throws SQLException
+    {
+        // Open the database
+        String myPath = DATABASE_PATH;
+        myDataBase = SQLiteDatabase
+                .openDatabase(
+                        myPath, null,
+                        SQLiteDatabase.OPEN_READONLY);
+    }
+
+    @Override
+    public synchronized void close() {
+        // close the database.
+        if (myDataBase != null)
+            myDataBase.close();
+        super.close();
     }
 
     @Override

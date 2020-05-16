@@ -25,13 +25,21 @@ public class SalahActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         salahList = new ArrayList<ListSalah>();
 
-        dbHandler = new DbHandler(this);
         displayData();
 
 
 
     }
     private void displayData(){
+        dbHandler = new DbHandler(this);
+        try {
+            dbHandler.createDataBase();
+            dbHandler.openDataBase();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         SQLiteDatabase database =  dbHandler.getReadableDatabase();
         Cursor cursor = dbHandler.getData();
         if(cursor.getCount() > 0){
