@@ -1,6 +1,8 @@
 package com.niloy.salah;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
@@ -47,5 +49,20 @@ public class DbHandler extends SQLiteOpenHelper {
         }catch (Exception e){
             Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public long insertData(String name){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_SALAH_NAME, name);
+
+        long rowId = database.insert(TABLE_NAME, null, contentValues);
+        return rowId;
+    }
+
+    public Cursor getData(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_NAME+";", null);
+        return cursor;
     }
 }
