@@ -46,7 +46,7 @@ public class SalahActivity extends AppCompatActivity {
 
             while (cursor.moveToNext()){
                 ListSalah listSalah = new ListSalah(cursor.getString(0), cursor.getString(1));
-                System.out.println(cursor.getString(1));
+                System.out.println(cursor.getString(0));
                 salahList.add(listSalah);
             }
             adapterSalah = new AdapterSalah(getApplicationContext(), salahList);

@@ -2,6 +2,7 @@ package com.niloy.salah;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,16 +25,42 @@ public class DbHandler extends SQLiteOpenHelper {
     private static String DATABASE_PATH = "";
     private static final String DATABASE_NAME = "Salah.db";
 
-    private static final String TABLE_NAME = "Salah";
+    private static final String TABLE_NAME_SALAH = "salah";
     private static final String KEY_SALAH_ID = "_id";
     private static final String KEY_SALAH_NAME = "name";
     private static final String CREATE_SALAH_TABLE =
-            "CREATE TABLE "+TABLE_NAME+ "("+
+            "CREATE TABLE "+ TABLE_NAME_SALAH + "("+
                     KEY_SALAH_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                    KEY_SALAH_NAME+" VARCHAR(255) );";
+                    KEY_SALAH_NAME+" VARCHAR(20) );";
+
+    private static final String TABLE_NAME_PRIORITY = "priority";
+    private static final String KEY_PRIORITY_ID = "_id";
+    private static final String KEY_PRIORITY_NAME = "name";
+    private static final String CREATE_PRIORITY_TABLE =
+            "CREATE TABLE "+ TABLE_NAME_PRIORITY + "("+
+                    KEY_PRIORITY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    KEY_PRIORITY_NAME+" VARCHAR(20) );";
+
+    private static final String TABLE_NAME_RAKAT = "rakat";
+    private static final String KEY_RAKAT_ID = "_id";
+    private static final String KEY_RAKAT_SALAH_ID = "salah_id";
+    private static final String KEY_RAKAT_PRIORITY_ID = "priority_id";
+    private static final String KEY_RAKAT_QUANTITY = "rakat";
+    private static final String KEY_RAKAT_NIYAT_ARABIC = "niyat_arabic";
+    private static final String KEY_RAKAT_NIYAT_BANGLA_PRONOUNCIATION = "niyat_bangla_pronounciation";
+    private static final String KEY_RAKAT_NIYAT_BANGLA = "niyat_bangla";
+    private static final String CREATE_RAKAT_TABLE =
+            "CREATE TABLE "+ TABLE_NAME_RAKAT + "("+
+                    KEY_RAKAT_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    KEY_RAKAT_SALAH_ID+" INTEGER NOT NULL, "+
+                    KEY_RAKAT_PRIORITY_ID+" INTEGER NOT NULL, "+
+                    KEY_RAKAT_QUANTITY+" VARCHAR(1),"+
+                    KEY_RAKAT_NIYAT_ARABIC+" VARCHAR(150),"+
+                    KEY_RAKAT_NIYAT_BANGLA_PRONOUNCIATION+" VARCHAR(150),"+
+                    KEY_RAKAT_NIYAT_BANGLA+" VARCHAR(150));";
 
     private static final int VERSION_NUMBER = 1;
-    private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME;
+    private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME_SALAH;
 
     public DbHandler(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION_NUMBER);
@@ -90,10 +117,7 @@ public class DbHandler extends SQLiteOpenHelper {
         myInput.close();
     }
 
-    public void openDataBase()
-            throws SQLException
-    {
-        // Open the database
+    public void openDataBase() throws SQLException {
         String myPath = DATABASE_PATH;
         myDataBase = SQLiteDatabase
                 .openDatabase(
@@ -113,6 +137,8 @@ public class DbHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try{
             db.execSQL(CREATE_SALAH_TABLE);
+            db.execSQL(CREATE_PRIORITY_TABLE);
+            db.execSQL(CREATE_RAKAT_TABLE);
             Toast.makeText(context, "Database Created. :)", Toast.LENGTH_LONG).show();
         }catch (Exception e){
             Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
@@ -131,18 +157,16 @@ public class DbHandler extends SQLiteOpenHelper {
         }
     }
 
-    public long insertData(String name){
-        SQLiteDatabase database = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_SALAH_NAME, name);
-
-        long rowId = database.insert(TABLE_NAME, null, contentValues);
-        return rowId;
-    }
 
     public Cursor getData(){
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_NAME+";", null);
+        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_SALAH +";", null);
+        return cursor;
+    }
+
+    public Cursor getRakatData(String id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id)+";", null);
         return cursor;
     }
 }
