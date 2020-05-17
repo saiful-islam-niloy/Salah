@@ -15,7 +15,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".RakatActivity" />
+        <activity android:name=".RakatActivity">
+
+        </activity>
         <activity android:name=".SalahActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import java.io.File;
@@ -67,6 +69,8 @@ public class DbHandler extends SQLiteOpenHelper {
         DATABASE_PATH = context.getDatabasePath(DATABASE_NAME).toString();
     }
 
+
+
     public void createDataBase() throws IOException {
 
         boolean dbExist = checkDataBase();
@@ -86,38 +90,51 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     private boolean checkDataBase() {
-//        String myPath;
-//        SQLiteDatabase checkDB = null;
-//        try {
-//            myPath = DATABASE_PATH;
-//            checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-//        } catch (SQLiteException e) {
-//            Log.e("message", "" + e);
-//        }
-//
-//        if (checkDB != null) {
-//            checkDB.close();
-//        }
-//        return checkDB != null;
         File databasePath = context.getDatabasePath(DATABASE_PATH);
         return databasePath.exists();
     }
 
     private void copyDataBase() throws IOException {
-        InputStream myInput = context.getAssets().open(DATABASE_NAME);
-        String outFileName = DATABASE_PATH;
-        OutputStream myOutput = new FileOutputStream(outFileName);
+//        InputStream myInput = context.getAssets().open(DATABASE_NAME);
+//        String outFileName = DATABASE_PATH;
+//        OutputStream myOutput = new FileOutputStream(outFileName);
+//
+//        byte[] buffer = new byte[1024];
+//        int length;
+//        while ((length = myInput.read(buffer)) > 0) {
+//            myOutput.write(buffer, 0, length);
+//        }
+//
+//
+//        myOutput.flush();
+//        myOutput.close();
+//        myInput.close();
+        InputStream inputStream = context.getAssets().open(DATABASE_NAME);
 
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = myInput.read(buffer)) > 0) {
-            myOutput.write(buffer, 0, length);
+        if(inputStream != null) {
+
+            int mFileLength = inputStream.available();
+
+            SQLiteDatabase database = this.getReadableDatabase();
+            String filePath = database.getPath();
+            database.close();
+
+            // Save the downloaded file
+            OutputStream output = new FileOutputStream(filePath);
+
+            byte data[] = new byte[1024];
+            long total = 0;
+            int count;
+            while ((count = inputStream.read(data)) != -1) {
+                total += count;
+                if(mFileLength != -1) {
+                    // Publish the progress
+//                    publishProgress((int) (total * 100 / mFileLength));
+                }
+                output.write(data, 0, count);
+            }
+//            return true;
         }
-
-
-        myOutput.flush();
-        myOutput.close();
-        myInput.close();
     }
 
     public void openDataBase() throws SQLException {
