@@ -15,6 +15,7 @@ public class RakatActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterRakat adapterRakat;
     private ArrayList<ListRakat> rakatList;
+    private ArrayList<String> priorityList;
     private DbHandler dbHandler;
     private String salahId;
 
@@ -29,21 +30,28 @@ public class RakatActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rakat);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rakatList = new ArrayList<ListRakat>();
+        priorityList  = new ArrayList<String>();
 
         displayData();
     }
 
     private void displayData(){
         dbHandler = new DbHandler(this);
-
-        SQLiteDatabase database =  dbHandler.getReadableDatabase();
         Cursor cursor = dbHandler.getRakatData(salahId);
-        System.out.println("Rakat COunt: "+cursor.getCount());
         if(cursor.getCount() > 0){
 
             while (cursor.moveToNext()){
+
                 ListRakat listRakat = new ListRakat(cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
-                System.out.println(cursor.getString(0));
+                if(cursor.getString(2) == "1")
+                    priorityList.add("ফরজ");
+                else if(cursor.getString(2) == "2")
+                    priorityList.add("ওয়াজিব");
+                else if(cursor.getString(2) == "3")
+                    priorityList.add("সুন্নত");
+                else if(cursor.getString(2) == "4")
+                    priorityList.add("নফল");
+                System.out.println("Priority Count: "+priorityList.size());
                 rakatList.add(listRakat);
             }
 

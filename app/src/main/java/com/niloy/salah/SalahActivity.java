@@ -48,10 +48,7 @@ public class SalahActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        MySQLiteOpenHelper helper = new MySQLiteOpenHelper();
-//        SQLiteDatabase database = helper.getReadableDatabase();
-//        String filePath = database.getPath();
-//        database.close();
+
 
         Cursor cursor = dbHandler.getSalahData();
         System.out.println("Cursor: "+cursor.getCount());

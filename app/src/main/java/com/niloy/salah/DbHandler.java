@@ -95,20 +95,6 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     private void copyDataBase() throws IOException {
-//        InputStream myInput = context.getAssets().open(DATABASE_NAME);
-//        String outFileName = DATABASE_PATH;
-//        OutputStream myOutput = new FileOutputStream(outFileName);
-//
-//        byte[] buffer = new byte[1024];
-//        int length;
-//        while ((length = myInput.read(buffer)) > 0) {
-//            myOutput.write(buffer, 0, length);
-//        }
-//
-//
-//        myOutput.flush();
-//        myOutput.close();
-//        myInput.close();
         InputStream inputStream = context.getAssets().open(DATABASE_NAME);
 
         if(inputStream != null) {
@@ -187,6 +173,7 @@ public class DbHandler extends SQLiteOpenHelper {
         Toast.makeText(context, "Fetching Data: "+cursor.getCount(), Toast.LENGTH_LONG).show();
         return cursor;
     }
+
 
     public Cursor getRakatData(String id){
         SQLiteDatabase database = this.getWritableDatabase();
