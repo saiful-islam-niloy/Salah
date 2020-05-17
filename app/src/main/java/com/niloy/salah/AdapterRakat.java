@@ -1,6 +1,8 @@
 package com.niloy.salah;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,8 +42,27 @@ public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> 
                         rakatList.get(i).getNiyat_arabic(),
                         rakatList.get(i).getNiyat_bangla_pornounciation(),
                         rakatList.get(i).getNiyat_bangla());
-                customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-                customDialog.show();
+                if(Build.VERSION.SDK_INT == 28){
+                    customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+                    customDialog.show();
+                }
+
+                else if(Build.VERSION.SDK_INT == 29){
+                    customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SEARCH_BAR);
+                    customDialog.show();
+                }
+
+                else if(Build.VERSION.SDK_INT <23){
+                    customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                    customDialog.show();
+                }
+
+                else{
+                    Intent intent = new Intent(context, NiyatActivity.class);
+                    intent.putExtra("Rakat_ID",rakatList.get(i).getId());
+                    context.startActivity(intent);
+                }
+
             }
         });
     }

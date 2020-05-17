@@ -180,4 +180,10 @@ public class DbHandler extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id)+";", null);
         return cursor;
     }
+
+    public Cursor getRakatNiyatData(String rakatId) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+"id"+"="+ Integer.parseInt(rakatId)+";", null);
+        return cursor;
+    }
 }

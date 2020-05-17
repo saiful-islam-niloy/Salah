@@ -42,7 +42,7 @@ public class RakatActivity extends AppCompatActivity {
 
             while (cursor.moveToNext()){
 
-                ListRakat listRakat = new ListRakat(cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+                ListRakat listRakat = new ListRakat(cursor.getString(0), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
                 if(cursor.getString(2) == "1")
                     priorityList.add("ফরজ");
                 else if(cursor.getString(2) == "2")
