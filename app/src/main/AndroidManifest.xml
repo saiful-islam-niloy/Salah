@@ -3,6 +3,7 @@
     package="com.niloy.salah">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RakatActivity"></activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".RakatActivity" />
         <activity android:name=".SalahActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
