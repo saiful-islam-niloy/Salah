@@ -16,12 +16,10 @@ import java.util.ArrayList;
 public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> {
     Context context;
     ArrayList<ListRakat> rakatList;
-    ArrayList<String> priorityList;
 
-    public AdapterRakat(Context context, ArrayList<ListRakat> rakatList, ArrayList<String> priorityList){
+    public AdapterRakat(Context context, ArrayList<ListRakat> rakatList){
         this.context = context;
         this.rakatList = rakatList;
-        this.priorityList = priorityList;
     }
     @NonNull
     @Override

@@ -59,6 +59,8 @@ public class DbHandler extends SQLiteOpenHelper {
                     KEY_RAKAT_NIYAT_BANGLA+" VARCHAR(150));";
 
     private static final int VERSION_NUMBER = 1;
+    private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
+            "CASE priority_id WHEN 1 THEN  'ফরজ' WHEN 2 THEN 'ওয়াজিব' WHEN 3 THEN 'সুন্নত' WHEN 4 THEN 'নফল'END test FROM rakat";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME_SALAH;
     private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS "+ TABLE_NAME_PRIORITY;
     private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS "+ TABLE_NAME_RAKAT;
@@ -177,7 +179,8 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public Cursor getRakatData(String id){
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id)+";", null);
+//        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id)+";", null);
+        Cursor cursor = database.rawQuery(FETCH_RAKAT_DATA+" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id), null);
         return cursor;
     }
 
