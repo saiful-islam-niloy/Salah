@@ -30,33 +30,41 @@ public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull AdapterRakat.ViewHolder viewHolder, final int i) {
         viewHolder.rakat.setText(rakatList.get(i).getRakat()+" রাকাত");
-        viewHolder.priority.setText(rakatList.get(i).getId());
-
+        viewHolder.priority.setText(rakatList.get(i).getPriority());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateCustomDialog customDialog = new CreateCustomDialog(context,
-                        rakatList.get(i).getNiyat_arabic(),
-                        rakatList.get(i).getNiyat_bangla_pornounciation(),
-                        rakatList.get(i).getNiyat_bangla());
-                if(Build.VERSION.SDK_INT == 28){
+                if(Build.VERSION.SDK_INT == 288){
+                    CreateCustomDialog customDialog = new CreateCustomDialog(context,
+                            rakatList.get(i).getNiyat_arabic(),
+                            rakatList.get(i).getNiyat_bangla_pornounciation(),
+                            rakatList.get(i).getNiyat_bangla());
                     customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
                     customDialog.show();
                 }
 
-                else if(Build.VERSION.SDK_INT == 29){
+                else if(Build.VERSION.SDK_INT == 299){
+                    CreateCustomDialog customDialog = new CreateCustomDialog(context,
+                            rakatList.get(i).getNiyat_arabic(),
+                            rakatList.get(i).getNiyat_bangla_pornounciation(),
+                            rakatList.get(i).getNiyat_bangla());
                     customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SEARCH_BAR);
                     customDialog.show();
                 }
 
                 else if(Build.VERSION.SDK_INT <23){
+                    CreateCustomDialog customDialog = new CreateCustomDialog(context,
+                            rakatList.get(i).getNiyat_arabic(),
+                            rakatList.get(i).getNiyat_bangla_pornounciation(),
+                            rakatList.get(i).getNiyat_bangla());
                     customDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                     customDialog.show();
                 }
 
                 else{
                     Intent intent = new Intent(context, NiyatActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("Rakat_ID",rakatList.get(i).getId());
                     context.startActivity(intent);
                 }

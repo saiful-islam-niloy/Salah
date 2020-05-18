@@ -40,7 +40,7 @@ public class RakatActivity extends AppCompatActivity {
 
             while (cursor.moveToNext()){
 
-                ListRakat listRakat = new ListRakat(cursor.getString(6), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                ListRakat listRakat = new ListRakat(cursor.getString(0), cursor.getString(6), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
                 rakatList.add(listRakat);
             }
 

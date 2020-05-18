@@ -19,7 +19,6 @@ import java.io.OutputStream;
 public class DbHandler extends SQLiteOpenHelper {
     private Context context;
     private SQLiteDatabase myDataBase;
-    private SQLiteOpenHelper sqLiteOpenHelper;
 
     private static String DATABASE_PATH = "";
     private static final String DATABASE_NAME = "Salah.db";
@@ -59,8 +58,11 @@ public class DbHandler extends SQLiteOpenHelper {
                     KEY_RAKAT_NIYAT_BANGLA+" VARCHAR(150));";
 
     private static final int VERSION_NUMBER = 1;
+//    private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
+//            "CASE priority_id WHEN 1 THEN  (SELECT name FROM priority WHERE id = 1) WHEN 2 THEN (SELECT name FROM priority WHERE id = 2) WHEN 3 THEN (SELECT name FROM priority WHERE id = 3) WHEN 4 THEN (SELECT name FROM priority WHERE id = 4) END test FROM rakat";
     private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
-            "CASE priority_id WHEN 1 THEN  'ফরজ' WHEN 2 THEN 'ওয়াজিব' WHEN 3 THEN 'সুন্নত' WHEN 4 THEN 'নফল'END test FROM rakat";
+            "(SELECT name FROM priority WHERE id = priority_id) as test FROM rakat";
+
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME_SALAH;
     private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS "+ TABLE_NAME_PRIORITY;
     private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS "+ TABLE_NAME_RAKAT;
