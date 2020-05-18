@@ -5,9 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import java.io.File;
@@ -58,9 +56,7 @@ public class DbHandler extends SQLiteOpenHelper {
                     KEY_RAKAT_NIYAT_BANGLA+" VARCHAR(150));";
 
     private static final int VERSION_NUMBER = 1;
-//    private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
-//            "CASE priority_id WHEN 1 THEN  (SELECT name FROM priority WHERE id = 1) WHEN 2 THEN (SELECT name FROM priority WHERE id = 2) WHEN 3 THEN (SELECT name FROM priority WHERE id = 3) WHEN 4 THEN (SELECT name FROM priority WHERE id = 4) END test FROM rakat";
-    private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
+ private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
             "(SELECT name FROM priority WHERE id = priority_id) as test FROM rakat";
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME_SALAH;
