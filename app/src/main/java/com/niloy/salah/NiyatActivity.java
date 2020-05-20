@@ -3,6 +3,7 @@ package com.niloy.salah;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import static com.niloy.salah.SettingActivity.BANGLA_FONT_SIZE;
 
 public class NiyatActivity extends AppCompatActivity {
     private TextView arabic, bangla, bangla2;
+    private FloatingActionButton fab;
     private String rakatId;
     private DbHandler dbHandler;
     private int arabicFontSize, banglaFontSize;
@@ -46,17 +48,13 @@ public class NiyatActivity extends AppCompatActivity {
         loadData();
         displayData();
 
-
-        Button b= (Button) findViewById(R.id.button1);
-        b.setOnClickListener(new View.OnClickListener()
-        {
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivity(intent);
-
             }
-
         });
     }
 
