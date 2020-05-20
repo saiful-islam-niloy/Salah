@@ -100,8 +100,8 @@ public class SettingActivity extends Activity {
 
     private void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
-        arabicFontSize = sharedPreferences.getInt(ARABIC_FONT_SIZE, 3 );
-        banglaFontSize = sharedPreferences.getInt(BANGLA_FONT_SIZE, 3 );
+        arabicFontSize = sharedPreferences.getInt(ARABIC_FONT_SIZE, 5 );
+        banglaFontSize = sharedPreferences.getInt(BANGLA_FONT_SIZE, 4 );
     }
 
 }

@@ -60,8 +60,8 @@ public class NiyatActivity extends AppCompatActivity {
 
     private void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
-        arabicFontSize = sharedPreferences.getInt(ARABIC_FONT_SIZE, 3 )+1;
-        banglaFontSize = sharedPreferences.getInt(BANGLA_FONT_SIZE, 3 )+1;
+        arabicFontSize = sharedPreferences.getInt(ARABIC_FONT_SIZE, 5 )+1;
+        banglaFontSize = sharedPreferences.getInt(BANGLA_FONT_SIZE, 4 )+1;
     }
 
     private void displayData(){
