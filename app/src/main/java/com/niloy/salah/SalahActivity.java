@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class SalahActivity extends AppCompatActivity {
         salahList = new ArrayList<ListSalah>();
         dbHandler = new DbHandler(this);
 
+        hideActionBar();
         displayData();
     }
 
@@ -63,6 +65,11 @@ public class SalahActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapterSalah);
 
         }
+    }
+
+    private void hideActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
     }
 
 }

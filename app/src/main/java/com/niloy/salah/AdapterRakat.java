@@ -10,6 +10,9 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,7 +72,7 @@ public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> 
                     customDialog.show();
                 }
 
-                else if(Build.VERSION.SDK_INT <23){
+                else if(Build.VERSION.SDK_INT >230){
                     CreateCustomDialog customDialog = new CreateCustomDialog(context,
                             rakatList.get(i).getNiyat_arabic(),
                             rakatList.get(i).getNiyat_bangla_pornounciation(),
@@ -83,6 +86,7 @@ public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("Rakat_ID",rakatList.get(i).getId());
                     context.startActivity(intent);
+
                 }
 
             }

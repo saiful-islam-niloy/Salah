@@ -24,7 +24,6 @@ public class CreateCustomDialog extends Dialog implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog);
         arabic = findViewById(R.id.arabic);
         bangla = findViewById(R.id.bangla);

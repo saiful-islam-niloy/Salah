@@ -8,20 +8,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
-        android:layout_margin="10dp"
-        android:minHeight="80dp">
+        android:layout_margin="10dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:gravity="center"
             android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="#0A5F55">
 
             <TextView
                 android:id="@+id/salah_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="5dp"
                 android:textSize="20dp"
+                android:textColor="#FFFFFF"
                 android:gravity="center"
                 android:text="Salah Name" />
 
