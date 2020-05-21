@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,9 @@ public class SalahActivity extends AppCompatActivity {
             adapterSalah = new AdapterSalah(getApplicationContext(), salahList);
             recyclerView.setAdapter(adapterSalah);
 
-        }
+        }else
+            Toast.makeText(getApplicationContext(), "Sorry! No Data Found.\n Re-install the App.", Toast.LENGTH_LONG).show();
+
     }
 
     private void createDatabase() {

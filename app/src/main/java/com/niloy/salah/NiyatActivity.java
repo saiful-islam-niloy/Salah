@@ -66,7 +66,6 @@ public class NiyatActivity extends AppCompatActivity {
     private void displayData(){
         dbHandler = new DbHandler(this);
         Cursor cursor = dbHandler.getRakatNiyatData(rakatId);
-        System.out.println("Final: "+cursor.getCount());
         while (cursor.moveToNext()){
             arabic.setText(cursor.getString(4));
             bangla.setText(cursor.getString(5));
