@@ -162,7 +162,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private int loadDataBaseVersion(){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
         int old = sharedPreferences.getInt(OLD_VERSION, 1 );
-        return 1;
+        return old;
     }
     @Override
     public synchronized void close() {

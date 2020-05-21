@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class RakatActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private TextView textView;
+    private TextView salahNameHeader, totalRakat;
     private AdapterRakat adapterRakat;
     private ArrayList<ListRakat> rakatList;
     private DbHandler dbHandler;
-    private String salahId, salahName;
+    private String salahId, salahName, rakat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +29,12 @@ public class RakatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         salahId = intent.getStringExtra("Salah_ID");
         salahName = intent.getStringExtra("Salah_Name");
+        rakat = intent.getStringExtra("Total_Rakat");
 
-        textView = findViewById(R.id.salah_name_header);
-        textView.setText(salahName);
+        salahNameHeader = findViewById(R.id.salah_name_header);
+        salahNameHeader.setText(salahName);
+        totalRakat = findViewById(R.id.salah_total_rakat);
+        totalRakat.setText(rakat);
 
         recyclerView = findViewById(R.id.rakat);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

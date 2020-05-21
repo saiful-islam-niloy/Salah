@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SettingActivity"
             android:label="Setting"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Dialog"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -22,9 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NiyatActivity" />
-        <activity android:name=".RakatActivity" />
-        <activity android:name=".SalahActivity"></activity>
+        <activity android:name=".NiyatActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RakatActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SalahActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

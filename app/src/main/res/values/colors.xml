@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#0C871C</color>
     <color name="colorAccent">#D81B60</color>
     <color name="lightGray">#ededed</color>
-<!--    <color name="thirdLayer">#9A027735</color>-->
+
     <color name="activityBackground">#5B027735</color>
     <color name="firstLayer">#0C871C</color>
     <color name="secondLayer">#A80C871C</color>
     <color name="thirdLayer">#990C871C</color>
     <color name="niyatCardBack">#027735</color>
     <color name="salahCardBack">#027735</color>
+    <color name="rakatCardBack">#027735</color>
+    <color name="floatingButton">#00574B</color>
 </resources>

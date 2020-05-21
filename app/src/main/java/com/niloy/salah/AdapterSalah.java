@@ -37,6 +37,7 @@ public class AdapterSalah extends
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Salah_ID",salahNames.get(i).getId());
                 intent.putExtra("Salah_Name", salahNames.get(i).getName());
+                intent.putExtra("Total_Rakat", salahNames.get(i).getTotalRakat());
                 context.startActivity(intent);
             }
         });

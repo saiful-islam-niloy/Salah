@@ -40,7 +40,7 @@ public class SalahActivity extends AppCompatActivity {
         if(cursor.getCount() > 0){
 
             while (cursor.moveToNext()){
-                ListSalah listSalah = new ListSalah(cursor.getString(0), cursor.getString(1));
+                ListSalah listSalah = new ListSalah(cursor.getString(0), cursor.getString(1), cursor.getString(2));
                 salahList.add(listSalah);
             }
             adapterSalah = new AdapterSalah(getApplicationContext(), salahList);
@@ -54,7 +54,7 @@ public class SalahActivity extends AppCompatActivity {
     private void createDatabase() {
         try {
             dbHandler.createDataBase(1);
-            dbHandler.customUpdateDB(1);
+            dbHandler.customUpdateDB(6);
 //            dbHandler.openDataBase();
         }
         catch (Exception e) {

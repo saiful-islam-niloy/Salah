@@ -1,4 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="topMargin">300dp</dimen>
+    <dimen name="rakatRecycleViewTopMargin">240dp</dimen>
+    <dimen name="rakatTopBannerHeight">240dp</dimen>
+    <dimen name="rakatBottomFrameTopMargin">200dp</dimen>
 </resources>
