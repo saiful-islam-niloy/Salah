@@ -8,14 +8,18 @@
     tools:context=".RakatActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/salah_name_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Today Date"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.32" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rakat"

@@ -1,27 +1,14 @@
 package com.niloy.salah;
 
-import android.app.AppOpsManager;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.os.Binder;
-import android.os.Build;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> {

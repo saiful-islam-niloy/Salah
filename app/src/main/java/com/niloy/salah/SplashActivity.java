@@ -18,6 +18,7 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+
     private void hideActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();

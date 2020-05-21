@@ -56,7 +56,7 @@ public class DbHandler extends SQLiteOpenHelper {
                     KEY_RAKAT_NIYAT_BANGLA+" VARCHAR(150));";
 
     private static final int VERSION_NUMBER = 1;
- private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
+    private static final String FETCH_RAKAT_DATA = "SELECT id, salah_id, rakat, niyat_arabic, niyat_bangla_pronounciation,niyat_bangla, " +
             "(SELECT name FROM priority WHERE id = priority_id) as test FROM rakat";
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME_SALAH;
@@ -89,7 +89,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     }
 
-    private boolean checkDataBase() {
+    public boolean checkDataBase() {
         File databasePath = context.getDatabasePath(DATABASE_PATH);
         return databasePath.exists();
     }
@@ -159,7 +159,6 @@ public class DbHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE2);
             db.execSQL(DROP_TABLE3);
             onCreate(db);
-            copyDataBase();
             Toast.makeText(context, "Database Upgraded. :)", Toast.LENGTH_LONG).show();
         }catch (Exception e){
             Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
@@ -170,14 +169,12 @@ public class DbHandler extends SQLiteOpenHelper {
     public Cursor getSalahData(){
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_SALAH +";", null);
-        Toast.makeText(context, "Fetching Data: "+cursor.getCount(), Toast.LENGTH_LONG).show();
         return cursor;
     }
 
 
     public Cursor getRakatData(String id){
         SQLiteDatabase database = this.getWritableDatabase();
-//        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id)+";", null);
         Cursor cursor = database.rawQuery(FETCH_RAKAT_DATA+" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id), null);
         return cursor;
     }

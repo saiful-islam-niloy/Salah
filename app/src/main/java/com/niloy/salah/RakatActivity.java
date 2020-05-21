@@ -7,16 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class RakatActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private TextView textView;
     private AdapterRakat adapterRakat;
     private ArrayList<ListRakat> rakatList;
     private DbHandler dbHandler;
-    private String salahId;
+    private String salahId, salahName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,10 @@ public class RakatActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         salahId = intent.getStringExtra("Salah_ID");
+        salahName = intent.getStringExtra("Salah_Name");
+
+        textView = findViewById(R.id.salah_name_header);
+        textView.setText(salahName);
 
         recyclerView = findViewById(R.id.rakat);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

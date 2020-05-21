@@ -1,19 +1,12 @@
 package com.niloy.salah;
 
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
+
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,8 +16,7 @@ public class SalahActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterSalah adapterSalah;
     private ArrayList<ListSalah> salahList;
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,16 +34,7 @@ public class SalahActivity extends AppCompatActivity {
 
 
     private void displayData(){
-        try {
-            dbHandler.createDataBase();
-//            dbHandler.openDataBase();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
+        createDatabase();
         Cursor cursor = dbHandler.getSalahData();
         System.out.println("Cursor: "+cursor.getCount());
         if(cursor.getCount() > 0){
@@ -64,6 +47,16 @@ public class SalahActivity extends AppCompatActivity {
             adapterSalah = new AdapterSalah(getApplicationContext(), salahList);
             recyclerView.setAdapter(adapterSalah);
 
+        }
+    }
+
+    private void createDatabase() {
+        try {
+            dbHandler.createDataBase();
+            dbHandler.openDataBase();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
