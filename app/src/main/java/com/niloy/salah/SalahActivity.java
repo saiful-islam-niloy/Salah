@@ -51,7 +51,7 @@ public class SalahActivity extends AppCompatActivity {
     private void createDatabase() {
         try {
             dbHandler.createDataBase(1);
-            dbHandler.customUpdateDB(2);
+            dbHandler.customUpdateDB(1);
 //            dbHandler.openDataBase();
         }
         catch (Exception e) {

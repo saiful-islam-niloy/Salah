@@ -82,11 +82,11 @@ public class DbHandler extends SQLiteOpenHelper {
         boolean dbExist = checkDataBase();
 
         if (dbExist) {
-            Toast.makeText(context, "DB Exits", Toast.LENGTH_LONG).show();
         } else {
             this.getWritableDatabase();
             try {
                 copyDataBase();
+                Toast.makeText(context, "Database Created Successfully.", Toast.LENGTH_LONG).show();
             }
             catch (IOException e) {
                 throw new Error("Error copying database");
@@ -145,7 +145,7 @@ public class DbHandler extends SQLiteOpenHelper {
             saveDatabaseVersion(version);
             try {
                 this.copyDataBase();
-                Toast.makeText(context, "DB Updated", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Database Updated Successfully.", Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -174,15 +174,6 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try{
-            db.execSQL(CREATE_SALAH_TABLE);
-            db.execSQL(CREATE_PRIORITY_TABLE);
-            db.execSQL(CREATE_RAKAT_TABLE);
-            Toast.makeText(context, "Database Created. :)", Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
-        }
-
     }
 
     @Override
