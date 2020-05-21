@@ -24,9 +24,8 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:id="@+id/salah_total_rakat"
         android:layout_width="match_parent"
@@ -35,9 +34,8 @@
         android:text="Total Rakat"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
+        android:layout_marginTop="135dp"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rakat"
