@@ -1,6 +1,7 @@
 package com.niloy.salah;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.niloy.salah.SettingActivity.SHARED_PREFES;
 
 public class DbHandler extends SQLiteOpenHelper {
     private Context context;
@@ -63,6 +67,8 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS "+ TABLE_NAME_PRIORITY;
     private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS "+ TABLE_NAME_RAKAT;
 
+    private static final String OLD_VERSION = "DATAVERSION";
+
     public DbHandler(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION_NUMBER);
         this.context = context;
@@ -71,7 +77,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
 
 
-    public void createDataBase() throws IOException {
+    public void createDataBase(int version) throws IOException {
 
         boolean dbExist = checkDataBase();
 
@@ -85,6 +91,7 @@ public class DbHandler extends SQLiteOpenHelper {
             catch (IOException e) {
                 throw new Error("Error copying database");
             }
+            saveDatabaseVersion(version);
         }
 
     }
@@ -131,6 +138,32 @@ public class DbHandler extends SQLiteOpenHelper {
                         SQLiteDatabase.OPEN_READONLY);
     }
 
+
+    public  void customUpdateDB(int version){
+        if(loadDataBaseVersion()< version){
+            this.context.deleteDatabase(DATABASE_NAME);
+            saveDatabaseVersion(version);
+            try {
+                this.copyDataBase();
+                Toast.makeText(context, "DB Updated", Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void saveDatabaseVersion(int version){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(OLD_VERSION, version);
+        editor.apply();
+    }
+
+    private int loadDataBaseVersion(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
+        int old = sharedPreferences.getInt(OLD_VERSION, 1 );
+        return 1;
+    }
     @Override
     public synchronized void close() {
         // close the database.
@@ -154,15 +187,6 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        try{
-            db.execSQL(DROP_TABLE);
-            db.execSQL(DROP_TABLE2);
-            db.execSQL(DROP_TABLE3);
-            onCreate(db);
-            Toast.makeText(context, "Database Upgraded. :)", Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
-        }
     }
 
 

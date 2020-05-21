@@ -30,7 +30,6 @@ public class AdapterSalah extends
     @Override
     public void onBindViewHolder(@NonNull AdapterSalah.ViewHolder viewHolder, final int i) {
         viewHolder.name.setText(salahNames.get(i).getName());
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +37,6 @@ public class AdapterSalah extends
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Salah_ID",salahNames.get(i).getId());
                 intent.putExtra("Salah_Name", salahNames.get(i).getName());
-                System.out.println("On recycle item click: "+salahNames.get(i).getId());
                 context.startActivity(intent);
             }
         });

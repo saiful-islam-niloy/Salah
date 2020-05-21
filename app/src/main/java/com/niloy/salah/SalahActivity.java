@@ -16,7 +16,7 @@ public class SalahActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterSalah adapterSalah;
     private ArrayList<ListSalah> salahList;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +36,10 @@ public class SalahActivity extends AppCompatActivity {
     private void displayData(){
         createDatabase();
         Cursor cursor = dbHandler.getSalahData();
-        System.out.println("Cursor: "+cursor.getCount());
         if(cursor.getCount() > 0){
 
             while (cursor.moveToNext()){
                 ListSalah listSalah = new ListSalah(cursor.getString(0), cursor.getString(1));
-                System.out.println(cursor.getString(0));
                 salahList.add(listSalah);
             }
             adapterSalah = new AdapterSalah(getApplicationContext(), salahList);
@@ -52,8 +50,9 @@ public class SalahActivity extends AppCompatActivity {
 
     private void createDatabase() {
         try {
-            dbHandler.createDataBase();
-            dbHandler.openDataBase();
+            dbHandler.createDataBase(1);
+            dbHandler.customUpdateDB(2);
+//            dbHandler.openDataBase();
         }
         catch (Exception e) {
             e.printStackTrace();
