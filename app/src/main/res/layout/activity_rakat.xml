@@ -9,9 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/rakatTopBannerHeight"
-        android:background="@drawable/background2"
+        android:background="@drawable/layer_bg"
         app:layout_constraintTop_toTopOf="parent" >
-
 
     </RelativeLayout>
 
