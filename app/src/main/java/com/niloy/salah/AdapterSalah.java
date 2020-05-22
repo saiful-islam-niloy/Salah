@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class AdapterSalah extends
         RecyclerView.Adapter<AdapterSalah.ViewHolder> {
-    Context context;
-    ArrayList<ListSalah> salahNames;
+    private Context context;
+    private ArrayList<ListSalah> salahNames;
 
     public AdapterSalah(Context context, ArrayList<ListSalah> salahNames){
         this.context = context;

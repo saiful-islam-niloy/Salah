@@ -115,7 +115,7 @@ public class DbHandler extends SQLiteOpenHelper {
             // Save the downloaded file
             OutputStream output = new FileOutputStream(filePath);
 
-            byte data[] = new byte[1024];
+            byte[] data = new byte[1024];
             long total = 0;
             int count;
             while ((count = inputStream.read(data)) != -1) {
@@ -161,8 +161,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     private int loadDataBaseVersion(){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
-        int old = sharedPreferences.getInt(OLD_VERSION, 1 );
-        return old;
+        return sharedPreferences.getInt(OLD_VERSION, 1 );
     }
     @Override
     public synchronized void close() {
@@ -183,20 +182,18 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public Cursor getSalahData(){
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_SALAH +";", null);
-        return cursor;
+        //        database.close();
+        return database.rawQuery("SELECT * FROM "+ TABLE_NAME_SALAH +";", null);
     }
 
 
     public Cursor getRakatData(String id){
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery(FETCH_RAKAT_DATA+" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id), null);
-        return cursor;
+        return database.rawQuery(FETCH_RAKAT_DATA+" WHERE "+KEY_RAKAT_SALAH_ID+"="+ Integer.parseInt(id), null);
     }
 
     public Cursor getRakatNiyatData(String rakatId) {
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+"id"+"="+ Integer.parseInt(rakatId)+";", null);
-        return cursor;
+        return database.rawQuery("SELECT * FROM "+ TABLE_NAME_RAKAT +" WHERE "+"id"+"="+ Integer.parseInt(rakatId)+";", null);
     }
 }

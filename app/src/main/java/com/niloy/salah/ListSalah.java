@@ -1,9 +1,9 @@
 package com.niloy.salah;
 
-public class ListSalah {
-    String id;
-    String name;
-    String totalRakat;
+class ListSalah {
+    private String id;
+    private String name;
+    private String totalRakat;
 
     public ListSalah(String id, String name, String totalRakat) {
         this.id = id;

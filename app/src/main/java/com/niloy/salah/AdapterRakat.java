@@ -12,8 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> {
-    Context context;
-    ArrayList<ListRakat> rakatList;
+    private Context context;
+    private ArrayList<ListRakat> rakatList;
 
     public AdapterRakat(Context context, ArrayList<ListRakat> rakatList){
         this.context = context;

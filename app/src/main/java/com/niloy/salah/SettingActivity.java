@@ -38,7 +38,7 @@ public class SettingActivity extends Activity {
         arabic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewArabic.setText("Arabic Font Size: "+Integer.toString(progress));
+                textViewArabic.setText("Arabic Font Size: "+ progress);
             }
 
             @Override
@@ -59,7 +59,7 @@ public class SettingActivity extends Activity {
         bangla.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewBangla.setText("Bangla Font Size: "+Integer.toString(progress));
+                textViewBangla.setText("Bangla Font Size: "+ progress);
             }
 
             @Override
