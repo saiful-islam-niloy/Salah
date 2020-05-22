@@ -4,4 +4,15 @@
     <dimen name="rakatRecycleViewTopMargin">240dp</dimen>
     <dimen name="rakatTopBannerHeight">240dp</dimen>
     <dimen name="rakatBottomFrameTopMargin">200dp</dimen>
+
+    <!--    RAKAT CARD-->
+    <dimen name="rakat_card_text_size">20dp</dimen>
+    <dimen name="rakat_card_text_padding">5dp</dimen>
+    <dimen name="rakat_card_margin">10dp</dimen>
+
+    <!--    SALAH CARD-->
+    <dimen name="salah_card_min_height">80dp</dimen>
+    <dimen name="salah_card_margin">10dp</dimen>
+    <dimen name="salah_card_text_size">25dp</dimen>
+    <dimen name="salah_card_text_padding">3dp</dimen>
 </resources>

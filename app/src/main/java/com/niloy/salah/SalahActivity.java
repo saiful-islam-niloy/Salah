@@ -32,7 +32,11 @@ public class SalahActivity extends AppCompatActivity {
         displayData();
     }
 
-
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+        dbHandler.close();
+    }
 
     private void displayData(){
         createDatabase();

@@ -2,11 +2,14 @@ package com.niloy.salah;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 
 public class RakatActivity extends AppCompatActivity {
 
+    private RelativeLayout relativeLayout;
     private RecyclerView recyclerView;
     private TextView salahNameHeader, totalRakat;
     private AdapterRakat adapterRakat;
@@ -40,8 +44,15 @@ public class RakatActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rakatList = new ArrayList<ListRakat>();
 
+        resizeMinarIfNeeded();
         hideActionBar();
         displayData();
+    }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+        dbHandler.close();
     }
 
     private void displayData(){
@@ -66,6 +77,16 @@ public class RakatActivity extends AppCompatActivity {
     private void hideActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+    }
+
+    private void resizeMinarIfNeeded(){
+        relativeLayout = findViewById(R.id.minar);
+        final int sdk = android.os.Build.VERSION.SDK_INT;
+        if(sdk <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            relativeLayout.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background2));
+//            Toast.makeText(getApplicationContext(), "PNG SET", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 }

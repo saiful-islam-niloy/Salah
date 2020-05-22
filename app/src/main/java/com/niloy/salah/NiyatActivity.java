@@ -57,6 +57,12 @@ public class NiyatActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+        dbHandler.close();
+    }
+
     private void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFES, MODE_PRIVATE);
         arabicFontSize = sharedPreferences.getInt(ARABIC_FONT_SIZE, 5 )+1;

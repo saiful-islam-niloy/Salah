@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/rakatCardBack"
-        android:layout_margin="10dp">
+        android:layout_margin="@dimen/rakat_card_margin">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,24 +18,24 @@
                 android:id="@+id/salah_rakat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textSize="20dp"
+                android:padding="@dimen/rakat_card_text_padding"
+                android:textSize="@dimen/rakat_card_text_size"
                 android:gravity="center"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:text="Salah Rakat" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#FFFFFF"/>
+                android:background="@color/white"/>
 
             <TextView
                 android:id="@+id/salah_priority"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textSize="20dp"
-                android:textColor="#FFFFFF"
+                android:padding="@dimen/rakat_card_text_padding"
+                android:textSize="@dimen/rakat_card_text_size"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="Salah Rakat" />
 

@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/activityBackground"
     tools:context=".RakatActivity">
 
     <RelativeLayout
+        android:id="@+id/minar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/rakatTopBannerHeight"
-        android:background="@drawable/layer_bg"
+        android:background="@drawable/ic_background2"
         app:layout_constraintTop_toTopOf="parent" >
 
     </RelativeLayout>
