@@ -80,7 +80,7 @@ public class RakatActivity extends AppCompatActivity {
 
     private void resizeMinarIfNeeded(){
         final int sdk = android.os.Build.VERSION.SDK_INT;
-        if(sdk <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if(sdk <= Build.VERSION_CODES.M) {
             RelativeLayout relativeLayout = findViewById(R.id.minar);
             relativeLayout.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background2));
         }

@@ -27,9 +27,8 @@ public class SplashActivity extends AppCompatActivity {
     private void resizeMinarIfNeeded(){
         relativeLayout = findViewById(R.id.minar);
         final int sdk = android.os.Build.VERSION.SDK_INT;
-        if(sdk <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if(sdk <= Build.VERSION_CODES.M) {
             relativeLayout.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background2));
-//            Toast.makeText(getApplicationContext(), "PNG SET", Toast.LENGTH_LONG).show();
         }
 
     }
