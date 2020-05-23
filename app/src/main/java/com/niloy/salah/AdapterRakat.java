@@ -27,7 +27,7 @@ public class AdapterRakat extends RecyclerView.Adapter<AdapterRakat.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull AdapterRakat.ViewHolder viewHolder, final int i) {
-        viewHolder.rakat.setText(rakatList.get(i).getRakat()+" রাকাত");
+        viewHolder.rakat.setText(rakatList.get(i).getRakat()+ context.getResources().getString(R.string.rakat_concat));
         viewHolder.priority.setText(rakatList.get(i).getPriority());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

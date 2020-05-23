@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class RakatActivity extends AppCompatActivity {
 
-    private RelativeLayout relativeLayout;
     private RecyclerView recyclerView;
     private TextView salahNameHeader, totalRakat;
     private AdapterRakat adapterRakat;
@@ -80,11 +79,10 @@ public class RakatActivity extends AppCompatActivity {
     }
 
     private void resizeMinarIfNeeded(){
-        relativeLayout = findViewById(R.id.minar);
         final int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            RelativeLayout relativeLayout = findViewById(R.id.minar);
             relativeLayout.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background2));
-//            Toast.makeText(getApplicationContext(), "PNG SET", Toast.LENGTH_LONG).show();
         }
 
     }

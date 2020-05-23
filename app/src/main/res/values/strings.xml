@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">নামাজের রাকাত</string>
+    <string name="rakat_concat">\u0020রাকাত</string>
 </resources>
